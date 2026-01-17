@@ -23,7 +23,7 @@ Choose an API and find its official documentation.
 
 ---
 
-# 📤 To Submit
+## 📤 To Submit
 
 - For credit: Submit a brief note (in Canvas or as specified by your instructor) with:
   - The name of the API you chose

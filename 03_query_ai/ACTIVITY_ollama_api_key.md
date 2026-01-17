@@ -38,7 +38,7 @@ OLLAMA_API_KEY=your_api_key_here
 
 ---
 
-# 📤 To Submit
+## 📤 To Submit
 
 - For credit: Upon completion, enter into the **CANVAS** assignment textbox entry a screenshot showing your `.env` file (with the API key line visible, but you can blur the actual key value for security).
 

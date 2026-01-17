@@ -25,7 +25,7 @@ Learn how system prompts define agent behavior and roles. Modify system prompts 
 
 ---
 
-# 📤 To Submit
+## 📤 To Submit
 
 - For credit: Submit a screenshot showing your modified system prompt and the agent's response with the new role.
 

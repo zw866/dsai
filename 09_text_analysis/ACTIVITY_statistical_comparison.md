@@ -41,7 +41,7 @@ Learn to use t-test and ANOVA to compare quality control scores across different
 
 ---
 
-# 📤 To Submit
+## 📤 To Submit
 
 - For credit: Submit a screenshot showing:
   1. The t-test results (comparing Prompt A vs Prompt B)

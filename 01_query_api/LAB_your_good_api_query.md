@@ -35,7 +35,7 @@ Create an API query that returns substantial data (more than 1 row) useful for b
 
 ---
 
-# 📤 To Submit
+## 📤 To Submit
 
 - For credit: Screenshot showing your query code and the data output (first 10+ rows visible).
 

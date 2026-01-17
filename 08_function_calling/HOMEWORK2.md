@@ -11,7 +11,7 @@
 Compile your work from the last 3 weeks into a complete **AI agent system** that combines multi-agent orchestration, RAG, and function calling.
 
 This homework compiles work from:
-- [`LAB_prompt_design.md`](../05_agents/LAB_prompt_design.md) - Multi-agent prompt design
+- [`LAB_prompt_design.md`](../06_agents/LAB_prompt_design.md) - Multi-agent prompt design
 - [`LAB_custom_rag_query.md`](../07_rag/LAB_custom_rag_query.md) - RAG queries
 - [`LAB_multi_agent_with_tools.md`](LAB_multi_agent_with_tools.md) - Multi-agent systems with tools
 
@@ -73,7 +73,7 @@ Your deliverable should be a complete system that demonstrates:
 
 ---
 
-# 📤 To Submit
+## 📤 To Submit
 
 - For credit: Submit all four required components listed in the **Requirements** section above (100 pts total). **Submit a single .docx file.**
 

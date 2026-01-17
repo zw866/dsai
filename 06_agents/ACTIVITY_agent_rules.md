@@ -26,7 +26,7 @@ Use YAML rules to structure and guide agent behavior. Modify rules to see how th
 
 ---
 
-# 📤 To Submit
+## 📤 To Submit
 
 - For credit: Submit a screenshot showing your modified rule in the YAML file and the agent's output reflecting that change.
 

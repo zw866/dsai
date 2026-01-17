@@ -126,7 +126,7 @@
 
 ### PART 2: AGENTS FOR AI
 
-- [**Module 6: Agents and Prompt Engineering**](../05_agents/)
+- [**Module 6: Agents and Prompt Engineering**](../06_agents/)
   - DATES: Monday, 3/9 ~ Sunday, 3/15, 2026
   - TOPICS:
     - **Prompt Engineering** for **AI** Agents
@@ -135,10 +135,10 @@
     - **Multi-Agent Workflows** and Orchestration
     - **Agent Rules** and YAML Configuration
   - ACTIVITIES: **Due: Monday, 3/16, 2026 at 9:00 AM**
-    - [**ACTIVITY: System Prompts and Roles**](../05_agents/ACTIVITY_system_prompts.md)
-    - [**ACTIVITY: Multi-Agent Workflows**](../05_agents/ACTIVITY_multi_agent_workflow.md)
-    - [**ACTIVITY: Agent Rules**](../05_agents/ACTIVITY_agent_rules.md)
-    - [***LAB: Design Effective Prompts for Multi-Agent Systems***](../05_agents/LAB_prompt_design.md)
+    - [**ACTIVITY: System Prompts and Roles**](../06_agents/ACTIVITY_system_prompts.md)
+    - [**ACTIVITY: Multi-Agent Workflows**](../06_agents/ACTIVITY_multi_agent_workflow.md)
+    - [**ACTIVITY: Agent Rules**](../06_agents/ACTIVITY_agent_rules.md)
+    - [***LAB: Design Effective Prompts for Multi-Agent Systems***](../06_agents/LAB_prompt_design.md)
   - ASSIGNMENTS:
     - None
 

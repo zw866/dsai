@@ -23,7 +23,7 @@ Use Cursor to generate documentation for your API query script from [`LAB_your_g
 
 ---
 
-# 📤 To Submit
+## 📤 To Submit
 
 - For credit: Submit screenshots of your Cursor conversation, the generated documentation with Mermaid diagram, and the final rendered README.
 

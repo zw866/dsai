@@ -47,7 +47,7 @@ In this task, you will deploy a live app with **DigitalOcean's App Platform**!
 
 ---
 
-# 📤 To Submit
+## 📤 To Submit
 
 - For credit: Upon completion, enter into the **CANVAS** assignment textbox entry a screenshot of (1) your live app on **DigitalOcean**, and of (2) your internal **DigitalOcean App Platform** page for that app!
 

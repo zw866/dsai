@@ -118,7 +118,7 @@ print(response.json())
 
 ---
 
-# 📤 To Submit
+## 📤 To Submit
 
 - For credit: Submit screenshots showing:
   1. Your **Cursor Settings** → **Features** → **Docs** panel with both `httr2` and `requests` documentation added.

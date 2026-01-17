@@ -22,7 +22,7 @@ Run the example RAG scripts to see how Retrieval-Augmented Generation works with
 
 ---
 
-# 📤 To Submit
+## 📤 To Submit
 
 - For credit: Submit a screenshot showing the output from running at least two of the RAG scripts.
 

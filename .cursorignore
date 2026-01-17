@@ -11,3 +11,4 @@
 **/*.flac
 **/__pycache__
 **/_pycache_
+docs/.prep/.canvas

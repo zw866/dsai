@@ -24,7 +24,7 @@ Install and run Ollama locally on your machine, then test it using the example s
 
 ---
 
-# 📤 To Submit
+## 📤 To Submit
 
 - For credit: Submit a screenshot showing your terminal with Ollama running and the successful output from either the Python or R script.
 

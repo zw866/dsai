@@ -33,7 +33,7 @@ This tool demonstrates your ability to refine and polish a deployed application 
 
 ---
 
-## ✅ Your App Must Have
+## ✅ Your Task
 
 Your production-ready deployed ShinyApp must include all requirements from App V1 and App V2, plus:
 

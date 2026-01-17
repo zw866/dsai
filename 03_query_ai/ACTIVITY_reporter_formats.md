@@ -24,7 +24,7 @@ Learn to save AI-generated reports in different file formats. Choose one format 
 
 ---
 
-# 📤 To Submit
+## 📤 To Submit
 
 - For credit: Submit a screenshot showing your chosen output file (`.txt`, `.md`, `.html`, or `.docx`) opened and displaying the report content.
 

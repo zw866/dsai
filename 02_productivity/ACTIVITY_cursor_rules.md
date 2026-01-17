@@ -28,7 +28,7 @@ Use Cursor to create a custom rule for README formatting, then apply it to gener
 
 ---
 
-# 📤 To Submit
+## 📤 To Submit
 
 - For credit: Submit screenshots of rule creation, README generation with rule context, the generated README, and a brief explanation (3-5 sentences) of how your instructions related to the result
 

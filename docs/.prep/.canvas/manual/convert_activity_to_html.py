@@ -242,7 +242,7 @@ def create_html_card(md_file: Path, github_repo_url: str = "https://github.com/t
     html_parts.append('    <div style="background: #ffffff; border: 2px solid #e2e8f0; border-radius: 16px; padding: 40px; margin-bottom: 16px; text-align: center; position: relative;">')
     html_parts.append('        <div style="position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, #B31B1B 0%, #8B1414 100%); border-radius: 16px 16px 0 0;"></div>')
     html_parts.append(f'        <div style="width: 90px; height: 90px; margin: 0 auto 20px; background: linear-gradient(135deg, #B31B1B 0%, #8B1414 100%); border-radius: 50%; line-height: 90px; font-size: 42px; border: 4px solid rgba(179, 27, 27, 0.2); text-align: center;">{icon}</div>')
-    html_parts.append(f'        <p style="font-size: 14px; font-weight: 600; color: #B31B1B; margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 1px;">{label}</p>')
+    html_parts.append(f'        <p style="font-size: 20px; font-weight: 700; color: #B31B1B; margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 1px;">{label}</p>')
     html_parts.append(f'        <h1 style="font-size: 32px; font-weight: 700; color: #1a202c; margin: 0 0 16px 0; padding: 0;">{sections["title"]}</h1>')
     
     # Estimated time
@@ -261,7 +261,27 @@ def create_html_card(md_file: Path, github_repo_url: str = "https://github.com/t
     
     # Tasks section - collapsible
     if sections['tasks']:
-        tasks_html = markdown_to_html(sections['tasks'])
+        # Remove the first line (header) from tasks section
+        tasks_content = sections['tasks']
+        tasks_lines = tasks_content.split('\n')
+        # Skip lines until we find content that's not the header
+        # The header is typically "✅ Your Task" or "## ✅ Your Task"
+        start_idx = 0
+        for i, line in enumerate(tasks_lines):
+            line_stripped = line.strip()
+            # Skip empty lines and header lines
+            if not line_stripped:
+                continue
+            if (line_stripped.startswith('##') or 
+                'Your Task' in line_stripped or 
+                (line_stripped.startswith('✅') and 'Task' in line_stripped)):
+                start_idx = i + 1
+            else:
+                break
+        tasks_content = '\n'.join(tasks_lines[start_idx:]).strip()
+        tasks_html = markdown_to_html(tasks_content)
+        # Also remove any paragraph in the HTML that contains "Your Task"
+        tasks_html = re.sub(r'<p[^>]*>.*?✅\s*Your\s*Task.*?</p>', '', tasks_html, flags=re.IGNORECASE | re.DOTALL)
         html_parts.append('        <details style="background: #FEF2F2; border-left: 5px solid #B31B1B; border-right: 1px solid #e2e8f0; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; padding: 0; margin-top: 28px; border-radius: 6px; text-align: left;">')
         html_parts.append('            <summary style="cursor: pointer; font-weight: 600; font-size: 18px; color: #B31B1B; padding: 18px 24px; list-style: none;">')
         html_parts.append('                ✅ Your Task')
@@ -273,7 +293,27 @@ def create_html_card(md_file: Path, github_repo_url: str = "https://github.com/t
     
     # Submission section - collapsible
     if sections['submission']:
-        submission_html = markdown_to_html(sections['submission'])
+        # Remove the first line (header) from submission section
+        submission_content = sections['submission']
+        submission_lines = submission_content.split('\n')
+        # Skip lines until we find content that's not the header
+        # The header is typically "📤 To Submit" or "## 📤 To Submit"
+        start_idx = 0
+        for i, line in enumerate(submission_lines):
+            line_stripped = line.strip()
+            # Skip empty lines and header lines
+            if not line_stripped:
+                continue
+            if (line_stripped.startswith('##') or 
+                'To Submit' in line_stripped or 
+                (line_stripped.startswith('📤') and 'Submit' in line_stripped)):
+                start_idx = i + 1
+            else:
+                break
+        submission_content = '\n'.join(submission_lines[start_idx:]).strip()
+        submission_html = markdown_to_html(submission_content)
+        # Also remove any paragraph in the HTML that contains "To Submit"
+        submission_html = re.sub(r'<p[^>]*>.*?📤\s*To\s*Submit.*?</p>', '', submission_html, flags=re.IGNORECASE | re.DOTALL)
         html_parts.append('        <details style="background: #FEF2F2; border-left: 5px solid #D42D2D; border-right: 1px solid #e2e8f0; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; padding: 0; margin-top: 20px; border-radius: 6px; text-align: left;">')
         html_parts.append('            <summary style="cursor: pointer; font-weight: 600; font-size: 18px; color: #B31B1B; padding: 18px 24px; list-style: none;">')
         html_parts.append('                📤 To Submit')

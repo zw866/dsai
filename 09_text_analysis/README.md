@@ -52,7 +52,7 @@ By the end of this module, you will be able to:
 ## Integration with Other Modules
 
 - **Module 3** ([`03_query_ai/`](../03_query_ai/)): Uses existing Ollama/OpenAI setup and API patterns for AI quality control
-- **Module 6** ([`05_agents/`](../05_agents/)): Applies system prompts and structured outputs (JSON) concepts
+- **Module 6** ([`06_agents/`](../06_agents/)): Applies system prompts and structured outputs (JSON) concepts
 - **Module 7** ([`07_rag/`](../07_rag/)): Builds on text processing concepts (string matching, pattern detection)
 - **Module 11** ([`11_decision_support/`](../11_decision_support/)): Prepares for Homework 3, which requires statistical analysis of prompt performance
 

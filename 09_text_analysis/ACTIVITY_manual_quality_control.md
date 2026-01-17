@@ -29,7 +29,7 @@ Learn to manually perform quality control on AI-generated text by counting conce
 
 ---
 
-# 📤 To Submit
+## 📤 To Submit
 
 - For credit: Submit a screenshot showing the quality control results table (the "Comprehensive Quality Control Results" output) from running [`01_manual_quality_control.R`](01_manual_quality_control.R).
 

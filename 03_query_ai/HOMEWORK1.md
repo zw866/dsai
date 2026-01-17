@@ -74,7 +74,7 @@ The software should be functional, well-documented, and demonstrate your ability
 
 ---
 
-# 📤 To Submit
+## 📤 To Submit
 
 - For credit: Submit all four required components listed in the **Requirements** section above (100 pts total). **Submit a single .docx file.**
 

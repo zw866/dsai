@@ -11,7 +11,7 @@
 Refine and enhance your **AI-powered data analytics application** from App V1. Your app must add **Agentic Orchestration** and either **RAG** or **Tool Calling** (or both) in a way that adds value for your stakeholders. The app must remain **deployed** and accessible online. **You are expected and encouraged to use Cursor to support your coding.**
 
 This tool builds on App V1 and adds work from:
-- [`LAB_prompt_design.md`](../05_agents/LAB_prompt_design.md) - Agentic orchestration and multi-agent systems
+- [`LAB_prompt_design.md`](../06_agents/LAB_prompt_design.md) - Agentic orchestration and multi-agent systems
 - [`LAB_custom_rag_query.md`](../07_rag/LAB_custom_rag_query.md) - RAG queries (if implementing RAG)
 - [`LAB_multi_agent_with_tools.md`](LAB_multi_agent_with_tools.md) - Tool calling (if implementing tools)
 
@@ -32,7 +32,7 @@ This tool demonstrates your ability to integrate advanced AI capabilities (agent
 
 ---
 
-## ✅ Your App Must Have
+## ✅ Your Task
 
 Your enhanced deployed ShinyApp must include all requirements from App V1, plus:
 

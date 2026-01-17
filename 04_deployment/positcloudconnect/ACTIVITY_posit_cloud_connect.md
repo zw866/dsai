@@ -24,7 +24,7 @@ Deploy your application to Posit Cloud Connect using the official documentation.
 
 ---
 
-# 📤 To Submit
+## 📤 To Submit
 
 - For credit: Submit a screenshot showing your successfully deployed application on Posit Cloud Connect.
 

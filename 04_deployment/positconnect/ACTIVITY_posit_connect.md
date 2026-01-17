@@ -17,7 +17,7 @@ Deploy your application to Posit Connect. Detailed instructions are forthcoming.
 
 ---
 
-# 📤 To Submit
+## 📤 To Submit
 
 - For credit: Instructions will be provided when this activity is ready.
 

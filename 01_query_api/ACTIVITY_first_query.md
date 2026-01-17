@@ -28,7 +28,7 @@ Run the example scripts to practice making API calls before working with your ow
 
 ---
 
-# 📤 To Submit
+## 📤 To Submit
 
 - For credit: Screenshot showing successful output from at least one example script.
 

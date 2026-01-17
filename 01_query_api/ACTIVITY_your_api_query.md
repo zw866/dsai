@@ -1,6 +1,6 @@
 # 📌 ACTIVITY
 
-## Make Your First API Query
+## Your Project API Query
 
 🕒 *Estimated Time: 20 minutes*
 
@@ -36,7 +36,7 @@ Set up secure API key storage and make your first successful query.
 
 ---
 
-# 📤 To Submit
+## 📤 To Submit
 
 - For credit: Screenshot showing successful API response (status code and **data output**).
 

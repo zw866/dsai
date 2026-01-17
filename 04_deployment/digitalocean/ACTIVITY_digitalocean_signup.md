@@ -53,7 +53,7 @@ Finally, all cloud infrastructure you make will be grouped by **projects**. I en
 
 ---
 
-# 📤 To Submit
+## 📤 To Submit
 
 - For credit: Upon completion, enter into the **CANVAS** assignment textbox entry a screenshot of your account homepage!
 

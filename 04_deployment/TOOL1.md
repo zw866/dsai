@@ -33,7 +33,7 @@ This tool demonstrates your ability to integrate API queries, web applications, 
 
 ---
 
-## ✅ Your App Must Have
+## ✅ Your Task
 
 Your deployed ShinyApp must include:
 
