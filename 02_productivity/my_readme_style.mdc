@@ -1,0 +1,86 @@
+---
+description: README formatting style - clear structure, professional tone
+globs: ["**/README*.md"]
+alwaysApply: false
+---
+# README Formatting Rule
+
+Apply this rule when generating or editing README files. Aim for clarity, consistency, and professional presentation.
+
+---
+
+## Required Structure
+
+Every README must include these sections (in order):
+
+1. **Overview** — What the project/script does in 2–3 sentences
+2. **Usage** — How to run or use it (steps, commands, or instructions)
+3. **Notes** — Caveats, prerequisites, tips, or links to more info
+
+Add other sections as needed (e.g., Installation, Configuration, API Reference).
+
+---
+
+## Formatting Guidelines
+
+### Section Headers
+- Use `##` for main sections
+- Use `###` for subsections
+- Keep headers short and descriptive
+- Example: `## Usage`, `### Installation`
+
+### Bullet Points
+- Use `-` for unordered lists
+- Use `1.` `2.` for ordered lists when steps matter
+- Start each bullet with a capital letter
+- Keep bullets concise (one idea per bullet)
+
+### Code Blocks
+- Wrap examples in fenced code blocks with language: ` ```bash `, ` ```python `, etc.
+- Place a brief caption or explanation above or below the block
+- Keep examples minimal and runnable
+- Example:
+  ```markdown
+  Run the script:
+  ```bash
+  python script.py
+  ```
+  ```
+
+### File References
+- Use relative links for project files: `[`filename.py`](path/to/filename.py)`
+- Use inline code for file names in prose: `config.env`
+
+---
+
+## Tone and Style
+
+- **Professional** — Formal but not stiff; avoid slang
+- **Concise** — Short sentences; no filler
+- **Direct** — State what it does and how to use it
+- **Avoid** — "obviously", "clearly", "it is critical", excessive adjectives
+
+---
+
+## Example Snippet
+
+```markdown
+## Overview
+
+This script fetches GDP data from the World Bank API for multiple countries.
+It handles pagination and outputs cleaned records suitable for analysis.
+
+## Usage
+
+1. Install dependencies: `pip install requests`
+2. Run the script:
+   ```bash
+   python wb_query.py
+   ```
+3. Output appears in the terminal.
+
+## Notes
+
+- No API key required for the World Bank API.
+- Edit constants at the top of the script to change countries or date range.
+```
