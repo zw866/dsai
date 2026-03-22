@@ -25,7 +25,6 @@ jobs:
 
       - name: Create manifest.json for Posit Connect
         run: rsconnect write-manifest shiny 04_deployment/positconnect/shinypy
-
       - name: Publish to Posit Connect
         uses: rstudio/actions/connect-publish@main
         with:
