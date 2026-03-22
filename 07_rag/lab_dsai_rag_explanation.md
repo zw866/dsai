@@ -1,0 +1,3 @@
+# Lab Explanation
+
+I created a CSV data source called `dsai_project_notes.csv` that stores eight project-related records about data collection, dashboards, deployment, agent rules, and RAG. I chose a CSV because the project notes are naturally structured into fields such as topic, goal, tools, deliverable, and keywords, which makes filtering straightforward. My search function reads the CSV with pandas and returns rows whose topic, goal, tools, deliverable, or keywords contain the user query. The system prompt tells the model to answer only with the retrieved records, summarize the most relevant project components, and explicitly mention when the retrieved context is incomplete.

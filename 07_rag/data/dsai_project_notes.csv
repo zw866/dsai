@@ -1,0 +1,9 @@
+id,topic,goal,tools,deliverable,keywords
+1,API Data Collection,Collect structured data from an external API for downstream analysis,"Python, requests, JSON",Clean dataset and reproducible script,"api, json, collect, clean, pipeline"
+2,Productivity Dashboard,Build an interactive dashboard that summarizes project metrics for non-technical users,"Shiny, Python, HTML",Interactive dashboard and summary report,"dashboard, shiny, report, visualization, metrics"
+3,AI Query Assistant,Answer user questions with evidence from project documents and generated reports,"LLM, prompt engineering, markdown",Question answering workflow and written report,"llm, rag, query, documents, evidence"
+4,Deployment Workflow,Publish an app so it can run outside the local machine with minimal manual setup,"GitHub Actions, Posit Connect, Docker",Deployable app with setup instructions,"deploy, hosting, workflow, automation, production"
+5,Agent Rules Experiment,Test how system prompts and model settings change response tone and quality,"Ollama, YAML, Python",Prompt comparison notes and updated scripts,"agents, prompt, rules, tone, settings"
+6,Custom RAG Prototype,Search project records before sending context to the model so answers stay grounded,"Python, pandas, Ollama",RAG script and output screenshot,"rag, retrieval, context, grounded, search"
+7,Model Comparison,Compare smaller and larger local models on accuracy and response style for class tasks,"Ollama, benchmarking, markdown",Comparison table and recommendations,"models, ollama, benchmark, accuracy, speed"
+8,Final Project Report,Combine code results and narrative explanation into a polished deliverable for submission,"Markdown, HTML, DOCX",Final report package and presentation notes,"report, summary, deliverable, writeup, presentation"
