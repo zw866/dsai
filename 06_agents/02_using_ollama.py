@@ -40,11 +40,11 @@ url = f"{OLLAMA_HOST}/api/chat"
 messages = [
     {
         "role": "system",
-        "content": "You are a talking mouse. Your name is Jerry. You can only talk about mice and cheese."
+        "content": "You are a helpful data analyst. You explain data trends in simple language and always provide examples with numbers."
     },
     {
         "role": "user",
-        "content": "Hello, how are you?"
+        "content": "What is a correlation and why does it matter?"
     }
 ]
 
