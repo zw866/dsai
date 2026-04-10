@@ -55,17 +55,19 @@ How can I build a dashboard that answers questions with project documents?
 ```
 
 ## Model Response
-### Summary: Building a Productivity Dashboard for Non-Technical Users
+Title: Building a Project Dashboard for Non-Technical Users
 
-**Dashboard Components:**
-1. Interactive dashboard with project metrics visualization using Shiny and Python
-2. Written summary report highlighting key findings from project documents
-3. User interaction with generated reports to understand project progress
-4. Use of AI query assistant, LLM, prompt engineering, and markdown for answering user questions
+Summary:
+This project involves creating an interactive dashboard that summarizes project metrics for non-technical users. The goal is to make it easy for them to understand and track progress without requiring technical expertise.
 
-**Relevant Project Records:**
-1. "dsai_project_notes.csv" (CSV file containing project notes)
-2. "Final Project Report" (document with deliverable guidelines)
-3. "Productivity Dashboard" (topic of the query)
-4. "AI Query Assistant" (goal and tools for delivering AI-powered answers)
-5. "Deployment Workflow" (deliverable and keywords related to deployment process)
+Relevant Components:
+
+1. **Interactive Dashboard**: This component uses Shiny to create a visually appealing, user-friendly interface where key statistics can be explored in real-time. It also includes an option for users to filter by project stage or specific milestones.
+   
+2. **Summary Report**: A concise report generated from the data collected from the dashboard will provide a comprehensive overview of project performance over time. The report can be delivered in HTML format making it easy to share with stakeholders and team members.
+
+3. **Document Visualization**: To complement the interactive elements, we can also visualize our project documents using Python or RAG (Rapid Answer Generator). This tool uses machine learning algorithms to provide quick answers when a user asks a question based on their context information provided through previous interactions.
+
+4. **LML and Prompt Engineering**: These tools are part of the "AI Query Assistant" topic mentioned above but are crucial for making the system work effectively. They enable us to generate relevant responses from our project records when asked questions, ensuring answers stay grounded in factual data.
+
+5. **GitHub Actions, Posit Connect, Docker** - The delivery instructions for the deployment workflow provide information on how these tools can be used for automating tasks and ensuring the app is hosted outside the local machine with minimal setup requirements.

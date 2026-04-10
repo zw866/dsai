@@ -42,7 +42,25 @@ TOOLS = [
             },
             "required": ["dataset_name"],
         },
-    }
+    },
+    {
+        "name": "calculate_bmi",
+        "description": "Calculates Body Mass Index (BMI) given weight in kilograms and height in meters. Returns BMI value and WHO category (Underweight, Normal, Overweight, or Obese).",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "weight_kg": {
+                    "type": "number",
+                    "description": "Weight in kilograms (must be positive).",
+                },
+                "height_m": {
+                    "type": "number",
+                    "description": "Height in meters (must be positive).",
+                },
+            },
+            "required": ["weight_kg", "height_m"],
+        },
+    },
 ]
 
 # ── Tool logic (same datasets as R: mtcars, iris via Rdatasets CSV) ──
@@ -65,6 +83,25 @@ def run_tool(name: str, args: dict) -> str:
         summary.index.name = "variable"
         summary.columns = ["mean", "sd", "min", "max"]
         return summary.reset_index().to_json(orient="records", indent=2)
+
+    if name == "calculate_bmi":
+        weight = args.get("weight_kg")
+        height = args.get("height_m")
+        if weight is None or height is None:
+            raise ValueError("Both 'weight_kg' and 'height_m' are required.")
+        if weight <= 0 or height <= 0:
+            raise ValueError("Weight and height must be positive numbers.")
+        bmi = round(weight / (height ** 2), 2)
+        if bmi < 18.5:
+            category = "Underweight"
+        elif bmi < 25:
+            category = "Normal"
+        elif bmi < 30:
+            category = "Overweight"
+        else:
+            category = "Obese"
+        result = {"bmi": bmi, "category": category, "weight_kg": weight, "height_m": height}
+        return json.dumps(result, indent=2)
 
     raise ValueError(f"Unknown tool: {name}")
 
