@@ -1,0 +1,25 @@
+poi_id,x,y,name_messy,normalized_category,confidence,display_name_clean,error_flag
+1,-76.485,42.4478,CVS pharm #2847 (closed sun),healthcare,3,CVS pharmacy,False
+2,-76.4842,42.448,ithaca community HOSP w/urgent care,healthcare,3,Ithaca Community HOSP,False
+3,-76.4838,42.4472,Joe's Pizza & Subs LLC,food_retail,3,Joe's Pizza & Subs,False
+4,-76.486,42.4488,Former gas station / vacant,vacant,3,Former gas station,False
+5,-76.4828,42.4465,TCAT bus stop shelter,transport,3,TCAT bus stop shelter,False
+6,-76.4858,42.4492,Wells Fargo ATM kiosk,financial,3,Wells Fargo ATM,False
+7,-76.4818,42.447,Cornell Orchards farmstand (seasonal),agriculture,2,Cornell Orchards farmstand,False
+8,-76.4872,42.4468,Little Oaks Daycare Center,childcare,3,Little Oaks Daycare Center,False
+9,-76.4808,42.4485,Starbucks drive-thru,food_retail,3,Starbucks drive-thru,False
+10,-76.483,42.4458,Municipal parking garage P2 entrance,parking,3,Municipal parking garage P2 entrance,False
+11,-76.491,42.449,Tompkins Public Library main branch,public_government,3,Tompkins Public Library main branch,False
+12,-76.4885,42.4498,TCAT Route 13 stop (inbound),transport,2,TCAT Route 13 inbound stop,False
+13,-76.4865,42.4505,Anytime Fitness 24hr,recreation,3,Anytime Fitness,False
+14,-76.4848,42.4512,KeyBank walk-up ATM,financial,2,KeyBank ATM,False
+15,-76.4825,42.4518,Taco truck (weekends only),food_retail,2,Taco truck,False
+16,-76.4902,42.4525,Cass Park ice rink / rec facility,recreation,3,Cass Park rec facility,False
+17,-76.488,42.4532,County office bldg — DMV satellite,public_government,2,County DMV office,False
+18,-76.486,42.4538,GreenStar co-op mini,food_retail,2,GreenStar mini,False
+19,-76.484,42.4545,Bike share dock (broken screen),transport,2,Bike share dock,False
+20,-76.4915,42.4455,Gas station mini-mart (24h),food_retail,2,Gas station mini-mart,False
+21,-76.4892,42.456,ITHACA transit hub — all routes,transport,3,ITHACA transit hub,False
+22,-76.487,42.4565,Gorges playground & splash pad,recreation,3,Gorges playground & splash pad,False
+23,-76.4835,42.4442,Strip mall — dollar store + vape,retail,2,Strip mall,False
+24,-76.4812,42.452,Urgent care express (wait time LED),healthcare,3,Urgent care express,False

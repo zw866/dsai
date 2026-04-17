@@ -1,0 +1,14 @@
+{"ts": "2026-04-17T18:59:50Z", "api_round": 1, "tool": "set_cell", "row_id": 2, "column": "qty_on_hand", "old_value": "n/a", "new_value": ""}
+{"ts": "2026-04-17T18:59:50Z", "api_round": 2, "tool": "set_cell", "row_id": 3, "column": "last_restock", "old_value": "15-01-2024", "new_value": ""}
+{"ts": "2026-04-17T18:59:50Z", "api_round": 3, "tool": "set_cell", "row_id": 5, "column": "category", "old_value": "Electronics ", "new_value": "Electronics"}
+{"ts": "2026-04-17T18:59:50Z", "api_round": 7, "tool": "set_cell", "row_id": 11, "column": "qty_on_hand", "old_value": "-99999", "new_value": ""}
+{"ts": "2026-04-17T18:59:50Z", "api_round": 8, "tool": "set_cell", "row_id": 12, "column": "category", "old_value": "FOOD", "new_value": "Food"}
+{"ts": "2026-04-17T18:59:50Z", "api_round": 9, "tool": "set_cell", "row_id": 13, "column": "qty_on_hand", "old_value": "", "new_value": ""}
+{"ts": "2026-04-17T18:59:50Z", "api_round": 10, "tool": "set_cell", "row_id": 14, "column": "last_restock", "old_value": "2024-08-01", "new_value": "2024-08-01"}
+{"ts": "2026-04-17T18:59:50Z", "api_round": 11, "tool": "set_cell", "row_id": 15, "column": "qty_on_hand", "old_value": "2 0", "new_value": "20"}
+{"ts": "2026-04-17T18:59:50Z", "api_round": 12, "tool": "set_cell", "row_id": 16, "column": "category", "old_value": "Electronics ", "new_value": "Electronics"}
+{"ts": "2026-04-17T18:59:50Z", "api_round": 13, "tool": "set_cell", "row_id": 17, "column": "last_restock", "old_value": "", "new_value": ""}
+{"ts": "2026-04-17T18:59:50Z", "api_round": 14, "tool": "set_cell", "row_id": 18, "column": "last_restock", "old_value": "32/01/2024", "new_value": ""}
+{"ts": "2026-04-17T18:59:50Z", "api_round": 15, "tool": "set_cell", "row_id": 19, "column": "qty_on_hand", "old_value": "N/A", "new_value": ""}
+{"ts": "2026-04-17T18:59:50Z", "api_round": 16, "tool": "set_cell", "row_id": 19, "column": "category", "old_value": "Food service", "new_value": ""}
+{"ts": "2026-04-17T18:59:50Z", "api_round": 17, "tool": "set_cell", "row_id": 22, "column": "qty_on_hand", "old_value": "two", "new_value": "2"}
