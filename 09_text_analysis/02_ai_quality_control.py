@@ -19,17 +19,22 @@ import re  # for text processing
 import requests  # for HTTP requests
 import json  # for JSON operations
 import os  # for environment variables
-from dotenv import load_dotenv  # for loading .env file
+
+try:
+    from dotenv import load_dotenv  # for loading .env file
+except ImportError:
+    def load_dotenv():
+        return False
 
 ## 0.2 Configuration #################################
 
 # Choose your AI provider: "ollama" or "openai"
-AI_PROVIDER = "ollama"  # Change to "openai" if using OpenAI
+AI_PROVIDER = os.getenv("AI_PROVIDER", "ollama")
 
 # Ollama configuration
 PORT = 11434
 OLLAMA_HOST = f"http://localhost:{PORT}"
-OLLAMA_MODEL = "llama3.2:latest"  # Use a model that supports JSON output
+OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "gemma3:latest")
 
 # OpenAI configuration
 load_dotenv()
@@ -46,16 +51,23 @@ with open("09_text_analysis/data/sample_reports.txt", "r", encoding="utf-8") as 
 reports = [r.strip() for r in sample_text.split("\n\n") if r.strip()]
 report = reports[0]
 
-# Load source data (if available) for accuracy checking
-# In this example, we'll use a simple data structure
-source_data = """White County, IL | 2015 | PM10 | Time Driven | hours
-|type        |label_value |label_percent |
-|:-----------|:-----------|:-------------|
-|Light Truck |2.7 M       |51.8%         |
-|Car/ Bike   |1.9 M       |36.1%         |
-|Combo Truck |381.3 k     |7.3%          |
-|Heavy Truck |220.7 k     |4.2%          |
-|Bus         |30.6 k      |0.6%          |"""
+source_df = pd.read_csv("09_text_analysis/data/sample_data.csv")
+
+
+def format_source_data(df):
+    metadata = df.iloc[0][["county", "state", "year", "pollutant", "metric"]]
+    header = (
+        f"{metadata['county']}, {metadata['state']} | "
+        f"{metadata['year']} | {metadata['pollutant']} | {metadata['metric']}"
+    )
+    table_rows = ["type | label_value | label_percent", "--- | --- | ---"]
+    for _, row in df[["type", "label_value", "label_percent"]].iterrows():
+        table_rows.append(f"{row['type']} | {row['label_value']} | {row['label_percent']}")
+    data_table = "\n".join(table_rows)
+    return f"{header}\n{data_table}"
+
+
+source_data = format_source_data(source_df)
 
 print("📝 Report for Quality Control:")
 print("---")
@@ -66,53 +78,104 @@ print("---\n")
 
 ## 1.1 Create Quality Control Prompt #################################
 
-# Create a comprehensive quality control prompt based on samplevalidation.tex
-# This prompt asks the AI to evaluate text on multiple criteria
-def create_quality_control_prompt(report_text, source_data=None):
-    # Base instructions for quality control
-    instructions = "You are a quality control validator for AI-generated reports. Evaluate the following report text on multiple criteria and return your assessment as valid JSON."
-    
-    # Add source data if provided for accuracy checking
+def create_quality_control_prompt(report_text, source_data=None, prompt_version="refined"):
+    instructions = (
+        "You are a meticulous quality control validator for AI-generated policy reports. "
+        "Evaluate the report using the supplied source data and return only valid JSON."
+    )
+
     data_context = ""
     if source_data is not None:
         data_context = f"\n\nSource Data:\n{source_data}\n"
-    
-    # Quality control criteria (from samplevalidation.tex)
-    criteria = """
-  
+
+    if prompt_version == "baseline":
+        criteria = """
+
 Quality Control Criteria:
 
-1. **accurate** (boolean): Verify that no part of the paragraph misinterprets the data supplied. Return TRUE if no misinterpretation. FALSE if any problems.
+1. accurate (boolean): TRUE only if the report does not misinterpret the supplied data.
+2. accuracy (1-5): 1 = many interpretation errors, 5 = no interpretation errors.
+3. formality (1-5): 1 = casual writing, 5 = professional government-report style.
+4. faithfulness (1-5): 1 = unsupported claims, 5 = claims directly grounded in the data.
+5. clarity (1-5): 1 = confusing, 5 = clear and precise.
+6. succinctness (1-5): 1 = wordy, 5 = concise.
+7. relevance (1-5): 1 = irrelevant commentary, 5 = fully relevant commentary.
 
-2. **accuracy** (1-5 Likert scale): Rank the paragraph on a 5-point Likert scale, where 1 = many problems interpreting the Data vs. 5 = no misinterpretation of the Data.
-
-3. **formality** (1-5 Likert scale): Rank the paragraph on a 5-point Likert scale, where 1 = casual writing vs. 5 = government report writing.
-
-4. **faithfulness** (1-5 Likert scale): Rank the paragraph on a 5-point Likert scale, where 1 = makes grandiose claims not supported by the data vs. 5 = makes claims directly related to the data.
-
-5. **clarity** (1-5 Likert scale): Rank the paragraph on a 5-point Likert scale, where 1 = confusing writing style vs. 5 = clear and precise.
-
-6. **succinctness** (1-5 Likert scale): Rank the paragraph on a 5-point Likert scale, where 1 = unnecessarily wordy vs. 5 = succinct.
-
-7. **relevance** (1-5 Likert scale): Rank the paragraph on a 5-point Likert scale, where 1 = irrelevant commentary vs. 5 = relevant commentary about the data.
-
-Return your response as valid JSON in this exact format:
+Return JSON in this exact structure:
 {
-  "accurate": true/false,
-  "accuracy": 1-5,
-  "formality": 1-5,
-  "faithfulness": 1-5,
-  "clarity": 1-5,
-  "succinctness": 1-5,
-  "relevance": 1-5,
-  "details": "0-50 word explanation of your assessment"
+  "accurate": true,
+  "accuracy": 1,
+  "formality": 1,
+  "faithfulness": 1,
+  "clarity": 1,
+  "succinctness": 1,
+  "relevance": 1,
+  "details": "brief explanation"
 }
 """
-    
-    # Combine into full prompt
-    full_prompt = f"{instructions}{data_context}\n\nReport Text to Validate:\n{report_text}{criteria}"
-    
-    return full_prompt
+    else:
+        criteria = """
+
+Quality Control Criteria:
+
+Score every dimension with whole numbers from 1 to 5.
+
+1. accurate (boolean)
+- TRUE only if every numerical claim, comparison, and recommendation is consistent with the source data.
+- FALSE if there is any fabrication, incorrect percentage, incorrect ranking, or unsupported causal claim.
+
+2. accuracy (1-5)
+- 5 = all claims match the data exactly
+- 4 = mostly correct with only minor imprecision
+- 3 = mixed accuracy with noticeable issues
+- 2 = several factual or interpretive mistakes
+- 1 = major misinterpretation of the data
+
+3. formality (1-5)
+- 5 = professional, neutral, report-style language
+- 3 = somewhat conversational but acceptable
+- 1 = casual, dramatic, or colloquial language
+
+4. faithfulness (1-5)
+- 5 = conclusions stay close to the data and avoid exaggeration
+- 3 = some extrapolation beyond the data
+- 1 = grandiose or unsupported claims
+
+5. clarity (1-5)
+- 5 = easy to follow, specific, and precise
+- 3 = understandable but somewhat vague
+- 1 = confusing, fragmented, or imprecise
+
+6. succinctness (1-5)
+- 5 = concise with little redundancy
+- 3 = somewhat repetitive or padded
+- 1 = very wordy or repetitive
+
+7. relevance (1-5)
+- 5 = all content is directly tied to the data and task
+- 3 = some generic commentary
+- 1 = mostly off-topic or weakly connected to the data
+
+Additional rules:
+- Use the source data as the authority for factual evaluation.
+- Penalize unsupported urgency words such as "critical," "obviously," or "absolutely."
+- Penalize vague recommendations that do not clearly connect back to the emissions pattern.
+- In "details", explain the strongest reason for the score in 35 words or fewer.
+
+Return JSON in this exact structure:
+{
+  "accurate": true,
+  "accuracy": 1,
+  "formality": 1,
+  "faithfulness": 1,
+  "clarity": 1,
+  "succinctness": 1,
+  "relevance": 1,
+  "details": "brief explanation"
+}
+"""
+
+    return f"{instructions}{data_context}\n\nReport Text to Validate:\n{report_text}\n{criteria}"
 
 ## 1.2 Query AI Function #################################
 
@@ -180,6 +243,18 @@ def query_ai_quality_control(prompt, provider=AI_PROVIDER):
 ## 1.3 Parse Quality Control Results #################################
 
 # Parse JSON response and convert to DataFrame
+EXPECTED_FIELDS = [
+    "accurate",
+    "accuracy",
+    "formality",
+    "faithfulness",
+    "clarity",
+    "succinctness",
+    "relevance",
+    "details",
+]
+
+
 def parse_quality_control_results(json_response):
     # Try to parse JSON
     # Sometimes AI returns text with JSON, so we extract JSON if needed
@@ -189,62 +264,149 @@ def parse_quality_control_results(json_response):
     
     # Parse JSON
     quality_data = json.loads(json_response)
-    
-    # Convert to DataFrame
-    results = pd.DataFrame({
-        "accurate": [quality_data["accurate"]],
-        "accuracy": [quality_data["accuracy"]],
-        "formality": [quality_data["formality"]],
-        "faithfulness": [quality_data["faithfulness"]],
-        "clarity": [quality_data["clarity"]],
-        "succinctness": [quality_data["succinctness"]],
-        "relevance": [quality_data["relevance"]],
-        "details": [quality_data["details"]]
-    })
-    
+
+    missing_fields = [field for field in EXPECTED_FIELDS if field not in quality_data]
+    if missing_fields:
+        raise ValueError(f"Missing expected fields: {missing_fields}")
+
+    numeric_fields = [
+        "accuracy",
+        "formality",
+        "faithfulness",
+        "clarity",
+        "succinctness",
+        "relevance",
+    ]
+    for field in numeric_fields:
+        quality_data[field] = int(quality_data[field])
+        if quality_data[field] < 1 or quality_data[field] > 5:
+            raise ValueError(f"{field} must be between 1 and 5")
+
+    quality_data["accurate"] = bool(quality_data["accurate"])
+    quality_data["details"] = str(quality_data["details"]).strip()
+
+    results = pd.DataFrame([{field: quality_data[field] for field in EXPECTED_FIELDS}])
+
     return results
+
+
+def add_overall_score(results_df):
+    likert_columns = [
+        "accuracy",
+        "formality",
+        "faithfulness",
+        "clarity",
+        "succinctness",
+        "relevance",
+    ]
+    results_df = results_df.copy()
+    results_df["overall_score"] = results_df[likert_columns].mean(axis=1).round(2)
+    return results_df
+
+
+def manual_quality_snapshot(report_text):
+    has_numbers = bool(re.search(r"\d+", report_text))
+    has_percentages = bool(re.search(r"\d+%", report_text))
+    has_recommendations = bool(re.search(r"recommend|suggest|should|must", report_text, re.IGNORECASE))
+    has_hyperbole = bool(re.search(r"crucial|critical|extremely|absolutely", report_text, re.IGNORECASE))
+    has_belittling = bool(re.search(r"it is clear that|obviously|as you can see", report_text, re.IGNORECASE))
+    sentence_count = len(re.findall(r"[.!?]+", report_text))
+    word_count = len(report_text.split())
+
+    return pd.DataFrame({
+        "word_count": [word_count],
+        "sentence_count": [sentence_count],
+        "has_numbers": [has_numbers],
+        "has_percentages": [has_percentages],
+        "has_recommendations": [has_recommendations],
+        "has_hyperbole": [has_hyperbole],
+        "has_belittling": [has_belittling],
+    })
+
+
+def print_submission_summary(label, results_df, prompt_version):
+    row = results_df.iloc[0]
+    print(f"=== {label} ({prompt_version} prompt) ===")
+    print(results_df.to_string(index=False))
+    print(
+        f"\nOverall score: {row['overall_score']:.2f} / 5.00"
+        f"\nAccuracy check: {'PASS' if row['accurate'] else 'FAIL'}"
+        f"\nExplanation: {row['details']}\n"
+    )
+
+
+def compare_prompt_versions(report_text, source_data=None):
+    comparison_rows = []
+
+    for version in ["baseline", "refined"]:
+        prompt = create_quality_control_prompt(report_text, source_data, prompt_version=version)
+        response = query_ai_quality_control(prompt, provider=AI_PROVIDER)
+        parsed = add_overall_score(parse_quality_control_results(response))
+        parsed["prompt_version"] = version
+        comparison_rows.append(parsed)
+
+    return pd.concat(comparison_rows, ignore_index=True)
 
 # 2. Run Quality Control #################################
 
 ## 2.1 Create Quality Control Prompt #################################
 
-quality_prompt = create_quality_control_prompt(report, source_data)
+quality_prompt = create_quality_control_prompt(report, source_data, prompt_version="refined")
 
-print("🤖 Querying AI for quality control...\n")
-
-## 2.2 Query AI #################################
+print("🤖 Querying AI for quality control with the refined prompt...\n")
 
 ai_response = query_ai_quality_control(quality_prompt, provider=AI_PROVIDER)
 
-print("📥 AI Response (raw):")
+print("📥 AI Response (raw JSON):")
 print(ai_response)
 print()
 
-## 2.3 Parse and Display Results #################################
+quality_results = add_overall_score(parse_quality_control_results(ai_response))
+print_submission_summary("Quality Control Results", quality_results, "refined")
 
-quality_results = parse_quality_control_results(ai_response)
-
-print("✅ Quality Control Results:")
-print(quality_results)
+print("📋 Manual Quality Snapshot:")
+print(manual_quality_snapshot(report).to_string(index=False))
 print()
 
-## 2.4 Calculate Overall Score #################################
+print("🔁 Comparing baseline prompt vs refined prompt...\n")
+prompt_comparison = compare_prompt_versions(report, source_data)
+comparison_view = prompt_comparison[
+    [
+        "prompt_version",
+        "accurate",
+        "accuracy",
+        "formality",
+        "faithfulness",
+        "clarity",
+        "succinctness",
+        "relevance",
+        "overall_score",
+    ]
+]
+print(comparison_view.to_string(index=False))
+print()
 
-# Calculate average Likert score (excluding boolean accurate)
-likert_scores = quality_results[["accuracy", "formality", "faithfulness", "clarity", "succinctness", "relevance"]]
-overall_score = likert_scores.mean(axis=1).values[0]
+baseline_score = prompt_comparison.loc[
+    prompt_comparison["prompt_version"] == "baseline", "overall_score"
+].iloc[0]
+refined_score = prompt_comparison.loc[
+    prompt_comparison["prompt_version"] == "refined", "overall_score"
+].iloc[0]
 
-quality_results["overall_score"] = round(overall_score, 2)
-
-print(f"📊 Overall Quality Score (average of Likert scales): {overall_score:.2f} / 5.0")
-print(f"📊 Accuracy Check: {'✅ PASS' if quality_results['accurate'].values[0] else '❌ FAIL'}\n")
+print("🧾 Submission Notes Draft:")
+print(
+    "- The refined prompt uses explicit scoring anchors and penalizes vague or exaggerated language.\n"
+    "- The AI quality control system evaluates nuanced traits such as faithfulness, formality, and clarity that manual keyword checks cannot score directly.\n"
+    f"- In this run, the refined prompt changed the overall score by {refined_score - baseline_score:+.2f} points relative to the baseline prompt.\n"
+    "- Manual quality control is still useful for fast pattern checks, but AI quality control provides a richer judgment about whether the writing is accurate and professionally written.\n"
+)
 
 # 3. Quality Control Multiple Reports #################################
 
 ## 3.1 Batch Quality Control Function #################################
 
 # Function to check multiple reports
-def check_multiple_reports(reports, source_data=None):
+def check_multiple_reports(reports, source_data=None, prompt_version="refined"):
     print(f"🔄 Performing quality control on {len(reports)} reports...\n")
     
     all_results = []
@@ -253,12 +415,12 @@ def check_multiple_reports(reports, source_data=None):
         print(f"Checking report {i} of {len(reports)}...")
         
         # Create prompt
-        prompt = create_quality_control_prompt(report_text, source_data)
+        prompt = create_quality_control_prompt(report_text, source_data, prompt_version=prompt_version)
         
         # Query AI
         try:
             response = query_ai_quality_control(prompt, provider=AI_PROVIDER)
-            results = parse_quality_control_results(response)
+            results = add_overall_score(parse_quality_control_results(response))
             results["report_id"] = i
             all_results.append(results)
         except Exception as e:

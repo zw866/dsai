@@ -1,14 +1,25 @@
-{"ts": "2026-04-17T18:59:50Z", "api_round": 1, "tool": "set_cell", "row_id": 2, "column": "qty_on_hand", "old_value": "n/a", "new_value": ""}
-{"ts": "2026-04-17T18:59:50Z", "api_round": 2, "tool": "set_cell", "row_id": 3, "column": "last_restock", "old_value": "15-01-2024", "new_value": ""}
-{"ts": "2026-04-17T18:59:50Z", "api_round": 3, "tool": "set_cell", "row_id": 5, "column": "category", "old_value": "Electronics ", "new_value": "Electronics"}
-{"ts": "2026-04-17T18:59:50Z", "api_round": 7, "tool": "set_cell", "row_id": 11, "column": "qty_on_hand", "old_value": "-99999", "new_value": ""}
-{"ts": "2026-04-17T18:59:50Z", "api_round": 8, "tool": "set_cell", "row_id": 12, "column": "category", "old_value": "FOOD", "new_value": "Food"}
-{"ts": "2026-04-17T18:59:50Z", "api_round": 9, "tool": "set_cell", "row_id": 13, "column": "qty_on_hand", "old_value": "", "new_value": ""}
-{"ts": "2026-04-17T18:59:50Z", "api_round": 10, "tool": "set_cell", "row_id": 14, "column": "last_restock", "old_value": "2024-08-01", "new_value": "2024-08-01"}
-{"ts": "2026-04-17T18:59:50Z", "api_round": 11, "tool": "set_cell", "row_id": 15, "column": "qty_on_hand", "old_value": "2 0", "new_value": "20"}
-{"ts": "2026-04-17T18:59:50Z", "api_round": 12, "tool": "set_cell", "row_id": 16, "column": "category", "old_value": "Electronics ", "new_value": "Electronics"}
-{"ts": "2026-04-17T18:59:50Z", "api_round": 13, "tool": "set_cell", "row_id": 17, "column": "last_restock", "old_value": "", "new_value": ""}
-{"ts": "2026-04-17T18:59:50Z", "api_round": 14, "tool": "set_cell", "row_id": 18, "column": "last_restock", "old_value": "32/01/2024", "new_value": ""}
-{"ts": "2026-04-17T18:59:50Z", "api_round": 15, "tool": "set_cell", "row_id": 19, "column": "qty_on_hand", "old_value": "N/A", "new_value": ""}
-{"ts": "2026-04-17T18:59:50Z", "api_round": 16, "tool": "set_cell", "row_id": 19, "column": "category", "old_value": "Food service", "new_value": ""}
-{"ts": "2026-04-17T18:59:50Z", "api_round": 17, "tool": "set_cell", "row_id": 22, "column": "qty_on_hand", "old_value": "two", "new_value": "2"}
+{"ts": "2026-04-17T19:05:12Z", "api_round": 1, "tool": "set_cell", "row_id": 1, "column": "qty_on_hand", "old_value": "12", "new_value": "12"}
+{"ts": "2026-04-17T19:05:12Z", "api_round": 2, "tool": "set_cell", "row_id": 2, "column": "qty_on_hand", "old_value": "n/a", "new_value": "12"}
+{"ts": "2026-04-17T19:05:12Z", "api_round": 3, "tool": "set_cell", "row_id": 3, "column": "qty_on_hand", "old_value": "3 units", "new_value": "15012024"}
+{"ts": "2026-04-17T19:05:12Z", "api_round": 4, "tool": "set_cell", "row_id": 4, "column": "qty_on_hand", "old_value": "-5", "new_value": ""}
+{"ts": "2026-04-17T19:05:12Z", "api_round": 5, "tool": "set_cell", "row_id": 5, "column": "qty_on_hand", "old_value": "10", "new_value": "1"}
+{"ts": "2026-04-17T19:05:12Z", "api_round": 7, "tool": "set_cell", "row_id": 7, "column": "category", "old_value": "Food", "new_value": "Food"}
+{"ts": "2026-04-17T19:05:12Z", "api_round": 8, "tool": "set_cell", "row_id": 8, "column": "last_restock", "old_value": "not-a-date", "new_value": "2024-04-01"}
+{"ts": "2026-04-17T19:05:12Z", "api_round": 9, "tool": "set_cell", "row_id": 8, "column": "category", "old_value": "Food", "new_value": "Food"}
+{"ts": "2026-04-17T19:05:12Z", "api_round": 10, "tool": "set_cell", "row_id": 9, "column": "qty_on_hand", "old_value": "0", "new_value": ""}
+{"ts": "2026-04-17T19:05:12Z", "api_round": 11, "tool": "set_cell", "row_id": 10, "column": "qty_on_hand", "old_value": "1 1", "new_value": "11"}
+{"ts": "2026-04-17T19:05:12Z", "api_round": 12, "tool": "set_cell", "row_id": 2, "column": "category", "old_value": "electronics", "new_value": "Electronics"}
+{"ts": "2026-04-17T19:05:12Z", "api_round": 13, "tool": "set_cell", "row_id": 11, "column": "qty_on_hand", "old_value": "-99999", "new_value": ""}
+{"ts": "2026-04-17T19:05:12Z", "api_round": 14, "tool": "set_cell", "row_id": 12, "column": "category", "old_value": "FOOD", "new_value": ""}
+{"ts": "2026-04-17T19:05:12Z", "api_round": 15, "tool": "set_cell", "row_id": 13, "column": "last_restock", "old_value": "bad-date-here", "new_value": "2024-07-15"}
+{"ts": "2026-04-17T19:05:12Z", "api_round": 16, "tool": "set_cell", "row_id": 14, "column": "qty_on_hand", "old_value": "0", "new_value": "2024-08-01"}
+{"ts": "2026-04-17T19:05:12Z", "api_round": 17, "tool": "set_cell", "row_id": 15, "column": "qty_on_hand", "old_value": "2 0", "new_value": "20"}
+{"ts": "2026-04-17T19:05:12Z", "api_round": 18, "tool": "set_cell", "row_id": 16, "column": "qty_on_hand", "old_value": "unknown", "new_value": ""}
+{"ts": "2026-04-17T19:05:12Z", "api_round": 19, "tool": "set_cell", "row_id": 18, "column": "last_restock", "old_value": "32/01/2024", "new_value": "2024-09-01"}
+{"ts": "2026-04-17T19:05:12Z", "api_round": 20, "tool": "set_cell", "row_id": 19, "column": "category", "old_value": "Food service", "new_value": ""}
+{"ts": "2026-04-17T19:05:12Z", "api_round": 21, "tool": "set_cell", "row_id": 20, "column": "last_restock", "old_value": "not-a-date", "new_value": "2024-10-01"}
+{"ts": "2026-04-17T19:05:12Z", "api_round": 22, "tool": "set_cell", "row_id": 18, "column": "category", "old_value": "ELEC", "new_value": "electronics"}
+{"ts": "2026-04-17T19:05:12Z", "api_round": 24, "tool": "set_cell", "row_id": 21, "column": "category", "old_value": "cafeteria", "new_value": "Food"}
+{"ts": "2026-04-17T19:05:12Z", "api_round": 25, "tool": "set_cell", "row_id": 22, "column": "qty_on_hand", "old_value": "two", "new_value": "2"}
+{"ts": "2026-04-17T19:05:12Z", "api_round": 28, "tool": "set_cell", "row_id": 28, "column": "last_restock", "old_value": "2025-01-15", "new_value": "2025-01-15"}
+{"ts": "2026-04-17T19:05:12Z", "api_round": 30, "tool": "set_cell", "row_id": 26, "column": "last_restock", "old_value": "2025-01-01", "new_value": "2025-01-01"}

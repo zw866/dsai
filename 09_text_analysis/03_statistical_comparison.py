@@ -109,7 +109,9 @@ print(t_test_result)
 print()
 
 # Extract p-value
-p_value = t_test_result['p-val'].values[0]
+# pingouin has used both snake_case and hyphenated column names across versions.
+t_p_value_col = 'p_val' if 'p_val' in t_test_result.columns else 'p-val'
+p_value = t_test_result[t_p_value_col].values[0]
 
 # Interpret the result
 print("💡 Interpretation:")
@@ -144,8 +146,10 @@ print(anova_result)
 print()
 
 # Extract F-statistic and p-value
+# Support multiple pingouin column naming conventions.
 f_statistic = anova_result['F'].values[0]
-p_value = anova_result['p-unc'].values[0]
+anova_p_value_col = 'p_unc' if 'p_unc' in anova_result.columns else 'p-unc'
+p_value = anova_result[anova_p_value_col].values[0]
 
 print(f"📊 F-statistic: {f_statistic:.4f}")
 print(f"📊 p-value: {p_value:.4f}\n")
