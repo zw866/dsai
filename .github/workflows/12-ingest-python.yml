@@ -1,8 +1,9 @@
 name: Traffic Data Ingestion (Python)
 
 on:
-  schedule:
-    - cron: '*/15 * * * *' # every 15 minutes
+  # Temporarily paused. Uncomment the schedule below to run every 15 minutes again.
+  # schedule:
+  #   - cron: '*/15 * * * *' # every 15 minutes
   workflow_dispatch:
 
 concurrency:
