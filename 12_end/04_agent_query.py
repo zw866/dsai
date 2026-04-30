@@ -5,6 +5,7 @@
 
 import sys
 import os
+import json
 from pathlib import Path
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
@@ -26,8 +27,20 @@ UNIT_NOTE = "vehicles observed in one representative minute (1m/t1 interval) wit
 
 # 2. DEFINE TOOL FUNCTION ###################################
 
+def coerce_hours(hours_of_day):
+    if isinstance(hours_of_day, str):
+        try:
+            hours_of_day = json.loads(hours_of_day)
+        except json.JSONDecodeError:
+            hours_of_day = [item.strip() for item in hours_of_day.split(",")]
+    elif isinstance(hours_of_day, int):
+        hours_of_day = [hours_of_day]
+
+    return [int(h) for h in hours_of_day if 0 <= int(h) <= 23]
+
+
 def predict_vehicle_count(day_of_week, hours_of_day):
-    hours = [int(h) for h in hours_of_day if 0 <= int(h) <= 23]
+    hours = coerce_hours(hours_of_day)
     if not hours:
         raise ValueError("hours_of_day must contain at least one integer between 0 and 23.")
 
@@ -94,7 +107,7 @@ messages = [
     },
     {
         "role": "user",
-        "content": "Predict Brussels vehicle count for Monday for every hour (0 through 23).",
+        "content": "Predict Brussels vehicle count for Monday at 8 AM.",
     }
 ]
 tools = [tool_predict_vehicle_count]
@@ -110,8 +123,8 @@ print("Agent result:", result)
 
 # 5. VERIFY ###################################
 
-direct = predict_vehicle_count(day_of_week=1, hours_of_day=list(range(24)))
+direct = predict_vehicle_count(day_of_week=1, hours_of_day=[8])
 print("Direct API call predictions returned:", len(direct["predictions"]))
-print(f"Sample one-minute vehicle count: {direct['predictions'][8]['predicted_vehicle_count']} (1m/t1 at Monday 08:00)")
+print(f"Sample one-minute vehicle count: {direct['predictions'][0]['predicted_vehicle_count']} (1m/t1 at Monday 08:00)")
 print("Unit:", UNIT_NOTE)
-print("Match:", str(direct["predictions"][8]["predicted_vehicle_count"]) in str(result))
+print("Match:", str(direct["predictions"][0]["predicted_vehicle_count"]) in str(result))
