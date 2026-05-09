@@ -1,8 +1,9 @@
 name: Traffic Data Ingestion (Python)
 
 on:
-  schedule:
-    - cron: '*/15 * * * *' # every 15 minutes
+  # Disabled auto-schedule — re-enable by uncommenting the cron line below.
+  # schedule:
+  #   - cron: '*/15 * * * *' # every 15 minutes
   workflow_dispatch:
 
 concurrency:
