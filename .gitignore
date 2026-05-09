@@ -2,6 +2,8 @@
 .DS_Store
 **/__pycache__
 **/_pycache_
+.claude/
+HW1_.docx
 docs/.prep/.canvas
 03_query_ai/05_reporting_report.*
 08_function_calling/mcp_plumber/rsconnect/
