@@ -1,9 +1,11 @@
 .env
 .DS_Store
+.Rhistory
 **/__pycache__
 **/_pycache_
 .claude/
 HW1_.docx
+11_decision_support/homework3/homework3_DRAFT.docx
 docs/.prep/.canvas
 03_query_ai/05_reporting_report.*
 08_function_calling/mcp_plumber/rsconnect/

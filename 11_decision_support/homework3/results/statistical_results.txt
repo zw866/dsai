@@ -1,0 +1,53 @@
+======================================================================
+HW3 STATISTICAL ANALYSIS  -  Prompt Performance Comparison
+======================================================================
+
+1. DESCRIPTIVE STATISTICS BY PROMPT
+----------------------------------------------------------------------
+          numerical_fidelity              structural_compliance              hallucination_penalty              recommendation_actionable             constraint_adherence              composite_score             
+                        mean    std count                  mean    std count                  mean    std count                      mean   std count                 mean    std count            mean    std count
+prompt_id                                                                                                                                                                                                           
+A                      96.33  18.24    30                 68.67  14.08    30                  3.33  18.26    30                      2.80  0.76    30                96.67  18.26    30           77.27  14.60    30
+B                     100.00   0.00    30                 71.00   5.48    30                  0.00   0.00    30                      3.87  1.36    30               100.00   0.00    30           81.93   3.08    30
+C                      96.00  18.50    30                 67.67  12.78    30                  3.33  18.26    30                      4.20  1.69    30                96.67  18.26    30           79.80  15.35    30
+
+2. BARTLETT'S TEST FOR HOMOGENEITY OF VARIANCE (composite_score)
+----------------------------------------------------------------------
+  Bartlett's test statistic = 57.4017
+  p-value                   = 0.0000
+  Equal-variance assumption: no (use Welch ANOVA)
+
+3. PAIRWISE T-TESTS (composite_score)
+----------------------------------------------------------------------
+  Prompt A vs B: means 77.27 vs 81.93 | t = -1.713, p = 0.0964 ns
+  Prompt A vs C: means 77.27 vs 79.80 | t = -0.655, p = 0.5150 ns
+  Prompt B vs C: means 81.93 vs 79.80 | t = 0.746, p = 0.4611 ns
+
+4. ONE-WAY ANOVA (composite_score across A, B, C)
+----------------------------------------------------------------------
+  F = 1.072, p = 0.3468 ns
+  Welch's F = 1.670, Welch's p = 0.2005
+
+4b. PER-DIMENSION ANOVAS (each dimension separately, across A, B, C)
+----------------------------------------------------------------------
+  numerical_fidelity              F =   0.657, p = 0.5209 ns  (means A=96.33, B=100.00, C=96.00)
+  structural_compliance           F =   0.673, p = 0.5130 ns  (means A=68.67, B=71.00, C=67.67)
+  hallucination_penalty           F =   0.500, p = 0.6083 ns  (means A=3.33, B=0.00, C=3.33)
+  recommendation_actionable       F =   9.119, p = 0.0003 ***  (means A=2.80, B=3.87, C=4.20)
+  constraint_adherence            F =   0.500, p = 0.6083 ns  (means A=96.67, B=100.00, C=96.67)
+
+5. TUKEY HSD POST-HOC (composite_score)
+----------------------------------------------------------------------
+A B  mean_A  mean_B    diff    se       T  p_tukey  hedges
+A B 77.2667 81.9333 -4.6667 3.191 -1.4624   0.3140 -0.4367
+A C 77.2667 79.8000 -2.5333 3.191 -0.7939   0.7078 -0.1669
+B C 81.9333 79.8000  2.1333 3.191  0.6685   0.7823  0.1902
+
+6. CONCLUSION
+----------------------------------------------------------------------
+  Composite ANOVA p >= 0.05: no significant difference on the composite metric.
+  Composite numeric ranking: best mean = Prompt B (81.93).
+  Composite means: A=77.27, B=81.93, C=79.80
+
+  Per-dimension findings (p < 0.05 dimensions):
+    - recommendation_actionable: F=9.119, p=0.0003; best = Prompt C (mean=4.20)
